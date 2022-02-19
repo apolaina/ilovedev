@@ -1,14 +1,14 @@
-import React from "react";
-import { Icon } from "native-base";
-import { G, Path } from "react-native-svg";
+import React from 'react';
+import { Icon } from 'native-base';
+import { G, Path } from 'react-native-svg';
+
 const NativeBaseIcon = () => {
   return (
     <Icon size="220px" viewBox="0 0 602.339 681.729">
       <G
         id="Group_403"
         data-name="Group 403"
-        transform="translate(14575 1918.542)"
-      >
+        transform="translate(14575 1918.542)">
         <Path
           id="Path_1"
           data-name="Path 1"
