@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { NativeStackScreenProps } from 'react-native-screens/native-stack';
 import { Box, FlatList, Link, ScrollView, Text, View } from 'native-base';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { Dimensions } from 'react-native';
-
 import { ExperiencesAPI } from '../utils/API/ExperiencesAPI';
+
 import HighlightedText from '../components/HighlightedText';
 import Loading from '../components/Loading';
 import LottieAnimation from '../components/LottieAnimation';
 
-interface Props extends NativeStackScreenProps<any> {}
+import { Experience } from '../models/Experience';
+import { IDictionary } from '../models/IDictionary';
 
-const Experiences: React.FC<Props> = ({}) => {
+const Experiences: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [experiences, setExperiences] = useState<any>();
+  const [experiences, setExperiences] = useState<IDictionary<Experience>>();
   const { width } = Dimensions.get('window');
-  const colors = ['primary.700', 'secondary.700'];
+  const colors = {
+    light: ['primary.700', 'secondary.700'],
+    dark: ['primaryDark.400', 'primaryDark.700'],
+  };
 
   const experienceItem = ({ item }: { item: any }) => (
     <Box borderBottomWidth="1" borderColor="text.body" px="2" py="2">
@@ -36,7 +39,7 @@ const Experiences: React.FC<Props> = ({}) => {
       .catch(console.error);
   }, []);
 
-  return loading ? (
+  return loading || !experiences ? (
     <Loading />
   ) : (
     <View flex={1}>
@@ -47,7 +50,8 @@ const Experiences: React.FC<Props> = ({}) => {
         {Object.keys(experiences).map((experience: string, index: number) => (
           <ScrollView
             w={width}
-            _light={{ bg: colors[index % colors.length] }}
+            _light={{ bg: colors.light[index % colors.light.length] }}
+            _dark={{ bg: colors.dark[index % colors.dark.length] }}
             key={experience}>
             <Box p={10}>
               <Box alignSelf="center">

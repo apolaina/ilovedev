@@ -12,8 +12,8 @@ const Card: React.FC<Props> = ({ children }) => (
     borderColor="coolGray.200"
     borderWidth="1"
     _dark={{
-      borderColor: 'coolGray.600',
-      backgroundColor: 'gray.700',
+      borderColor: 'primaryDark.800',
+      backgroundColor: 'primaryDark.400',
     }}
     _light={{
       backgroundColor: 'gray.50',

@@ -1,6 +1,7 @@
 import { IDictionary } from '../../models/IDictionary';
+import { Experience } from '../../models/Experience';
 
-export const experiences: IDictionary<any> = {
+export const experiences: IDictionary<Experience> = {
   PEARLL: {
     context:
       "PEARLL was passionate about delivering wellness programs - based on science, that transform daily living habits - through a digital platform. Designed by top health and wellness professionals, PEARLL's personalized programs deliver integrated, step-by-step changes that reduce stress. I was fortunate to be involved in the development of the PEARLL web and mobile app, in addition to the development of the website.",

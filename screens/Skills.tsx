@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { NativeStackScreenProps } from 'react-native-screens/native-stack';
 import { Badge, Box, PresenceTransition, ScrollView, Stack } from 'native-base';
-import Loading from '../components/Loading';
 import { SkillsAPI } from '../utils/API/SkillsAPI';
-import CardHeader from '../components/Card/CardHeader';
-import CardContent from '../components/Card/CardContent';
-import Card from '../components/Card/Card';
+
 import BadgeContainer from '../components/BadgeContainer';
+import Card from '../components/Card/Card';
+import CardContent from '../components/Card/CardContent';
+import CardHeader from '../components/Card/CardHeader';
+import Loading from '../components/Loading';
 
-interface Props extends NativeStackScreenProps<any> {}
+import { IDictionary } from '../models/IDictionary';
 
-const Skills: React.FC<Props> = ({}) => {
+const Skills: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [skills, setSkills] = useState<any>();
+  const [skills, setSkills] = useState<IDictionary<Array<string>>>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,15 +25,18 @@ const Skills: React.FC<Props> = ({}) => {
       .catch(console.error);
   }, []);
 
-  return loading ? (
+  return loading || !skills ? (
     <Loading />
   ) : (
-    <ScrollView bgColor="transparent">
+    <ScrollView bgColor="transparent" _dark={{ bgColor: 'primaryDark.400' }}>
       <Box alignItems="center" px={3} py={5}>
         <Stack space={5}>
           {Object.keys(skills).map((skillType: string, skillsIndex: number) => (
             <Card key={skillType}>
-              <CardHeader>{skillType}</CardHeader>
+              <CardHeader
+                headingProps={{ _dark: { color: 'primaryDark.500' } }}>
+                {skillType}
+              </CardHeader>
               <CardContent>
                 <BadgeContainer justifyContent="center">
                   {skills[skillType].map(

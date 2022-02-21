@@ -5,13 +5,14 @@ import {
   NativeBaseProvider,
   Switch,
   Text,
+  themeTools,
   useColorMode,
 } from 'native-base';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import AppLoading from 'expo-app-loading';
 import {
@@ -19,14 +20,15 @@ import {
   NanumGothic_700Bold,
   NanumGothic_800ExtraBold,
 } from '@expo-google-fonts/nanum-gothic';
-import {StatusBar} from 'expo-status-bar';
-import {useFonts} from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
+import { useFonts } from 'expo-font';
 
 import DrawerContent from './components/DrawerContent';
 import Education from './screens/Education';
 import Home from './screens/Home';
 import Skills from './screens/Skills';
 import Experiences from './screens/Experiences';
+import AboutMe from './screens/AboutMe';
 
 // Define the config
 const config = {
@@ -107,6 +109,18 @@ const colors = {
     800: '#d5dbf8',
     900: '#cdd5f6',
   },
+  primaryDark: {
+    50: '#e1e2e5',
+    100: '#b4b6be',
+    200: '#828692',
+    300: '#4f5666',
+    400: '#2a3146',
+    500: '#040d25',
+    600: '#030b21',
+    700: '#03091b',
+    800: '#020716',
+    900: '#01030d',
+  },
   text: {
     body: '#2E394C',
     subTitle: '#8798AD',
@@ -116,11 +130,11 @@ const colors = {
 
 const components = {
   Text: {
-    baseStyle: {
+    baseStyle: (props: any) => ({
       fontFamily: 'NanumGothic_400Regular',
       fontSize: 'xl',
-      color: 'text.body',
-    },
+      color: themeTools.mode('text.body', 'primaryDark.50')(props),
+    }),
   },
 };
 
@@ -132,7 +146,7 @@ export const theme = extendTheme({
 
 const Drawer = createDrawerNavigator();
 
-const App = () => {
+const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
     'VictorMono-BoldItalic': require('./assets/fonts/VictorMono-BoldItalic.ttf'),
     'VictorMono-SemiBoldItalic': require('./assets/fonts/VictorMono-SemiBoldItalic.ttf'),
@@ -195,6 +209,15 @@ const App = () => {
               },
             }}
           />
+          <Drawer.Screen
+            name="about me"
+            component={AboutMe}
+            options={{
+              headerStyle: {
+                backgroundColor: colors.primary['500'],
+              },
+            }}
+          />
         </Drawer.Navigator>
       </NavigationContainer>
       {/*<Center*/}
@@ -222,23 +245,5 @@ const App = () => {
     </NativeBaseProvider>
   );
 };
-
-// Color Switch Component
-function ToggleDarkMode() {
-  const {colorMode, toggleColorMode} = useColorMode();
-  return (
-    <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
-      <Switch
-        isChecked={colorMode === 'light' ? true : false}
-        onToggle={toggleColorMode}
-        aria-label={
-          colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'
-        }
-      />
-      <Text>Light</Text>
-    </HStack>
-  );
-}
 
 export default App;

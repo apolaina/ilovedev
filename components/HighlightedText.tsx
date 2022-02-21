@@ -3,7 +3,7 @@ import { ITextProps, Text } from 'native-base';
 import { ColorType } from 'native-base/lib/typescript/components/types';
 import * as CSS from 'csstype';
 
-interface Props {
+interface Props extends ITextProps {
   children: ReactNode;
   color?: ColorType;
   fontSize?: ITextProps['fontSize'];
@@ -17,6 +17,7 @@ const HighlightedText: React.FC<Props> = ({
   fontSize = 'xl',
   textAlign = 'left',
   underline = false,
+  ...props
 }: Props) => {
   let style = {
     fontFamily: 'VictorMono-Italic',
@@ -33,7 +34,12 @@ const HighlightedText: React.FC<Props> = ({
   }
 
   return (
-    <Text style={style} fontSize={fontSize} color={color} textAlign={textAlign}>
+    <Text
+      style={style}
+      fontSize={fontSize}
+      color={color}
+      textAlign={textAlign}
+      {...props}>
       {children}
     </Text>
   );

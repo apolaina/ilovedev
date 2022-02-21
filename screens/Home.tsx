@@ -1,5 +1,4 @@
 import React from 'react';
-import { NativeStackScreenProps } from 'react-native-screens/native-stack';
 import { Box, ScrollView, Text, VStack } from 'native-base';
 import { getMomentOfDay } from '../utils/Moment';
 
@@ -10,27 +9,21 @@ import HighlightedText from '../components/HighlightedText';
 import ImageBackground from '../components/ImageBackground';
 import LottieAnimation from '../components/LottieAnimation';
 
-interface Props extends NativeStackScreenProps<any> {}
-
-const Home: React.FC<Props> = ({}) => {
+const Home: React.FC = () => {
   const momentOfDay = getMomentOfDay();
 
   return (
-    <ImageBackground backgroundUrl={require('../assets/splash.png')}>
+    <ImageBackground
+      backgroundUrl={require('../assets/splash.png')}
+      style={{ flex: 1 }}>
       <ScrollView bgColor="transparent">
-        <VStack rounded="lg" flex={1} bg="white:alpha.70" m={5} p={5}>
-          {/*<LinearGradient*/}
-          {/*  style={{borderRadius: 10, padding: 20}}*/}
-          {/*  start={{x: 0, y: 0}}*/}
-          {/*  end={{x: 1, y: 1}}*/}
-          {/*  colors={[*/}
-          {/*    '#E1E6FA',*/}
-          {/*    '#E1E6FA',*/}
-          {/*    '#F6E3FA',*/}
-          {/*    '#EEFAD7',*/}
-          {/*    '#E1E6FA',*/}
-          {/*    '#E1E6FA',*/}
-          {/*  ]}>*/}
+        <VStack
+          rounded="lg"
+          flex={1}
+          _light={{ bg: 'white:alpha.70' }}
+          _dark={{ bg: 'primaryDark.400' }}
+          m={5}
+          p={8}>
           <Heading pb={5}>{`Good ${momentOfDay},`}</Heading>
           <Text>
             My name is <HighlightedText underline>Alice</HighlightedText>! Nice
