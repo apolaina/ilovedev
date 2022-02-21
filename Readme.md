@@ -13,7 +13,7 @@ yarn install
 ```sh
 yarn start
 ```
-> 👀: When you run `expo start` (or `npm start`), Expo CLI starts Metro Bundler, which is an HTTP server that compiles the JavaScript code of our app using Babel and serves it to the Expo app. It also pops up Expo Dev Tools, a graphical interface for Expo CLI. Moreover, please consider opening the project on your mobile device, simulator or emulator, see the [Expo documentation](https://docs.expo.dev/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet) to know how. Note this app is not available on web. 
+> 👀: When you run `expo start` (or `yarn start`), Expo CLI starts Metro Bundler, which is an HTTP server that compiles the JavaScript code of our app using Babel and serves it to the Expo app. It also pops up Expo Dev Tools, a graphical interface for Expo CLI. Moreover, please consider opening the project on your mobile device, simulator or emulator, see the [Expo documentation](https://docs.expo.dev/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet) to know how. Note this app is not available on web. 
 
 ## Usage
 
