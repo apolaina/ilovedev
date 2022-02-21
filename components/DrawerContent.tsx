@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
+  Box,
   Divider,
   HStack,
   Pressable,
@@ -16,15 +17,12 @@ import { Linking } from 'react-native';
 import HighlightedText from './HighlightedText';
 import ImageBackground from './ImageBackground';
 import { ToggleDarkMode } from './ToggleDarkMode';
+import LottieAnimation from './LottieAnimation';
 
 interface Props extends DrawerContentComponentProps {}
 
 const DrawerContent: React.FC<Props> = (props: Props) => {
   const { colorMode } = useColorMode();
-
-  useEffect(() => {
-    console.log('colorMode', colorMode);
-  }, [colorMode]);
 
   return (
     <DrawerContentScrollView
@@ -106,11 +104,18 @@ const DrawerContent: React.FC<Props> = (props: Props) => {
         </VStack>
       </VStack>
       <ImageBackground>
-        <VStack px="5" py="3" alignItems="center">
+        <HStack px="5" py="3" alignItems="center" justifyContent="center">
           <Text fontSize="xs" color="text.body">
-            Made with ♡
+            Made with{' '}
           </Text>
-        </VStack>
+          <Box alignSelf="flex-start">
+            <LottieAnimation
+              width={50}
+              style={{ marginLeft: -5 }}
+              source={require('../assets/animations/heart.json')}
+            />
+          </Box>
+        </HStack>
       </ImageBackground>
     </DrawerContentScrollView>
   );

@@ -5,8 +5,12 @@ interface Props extends AnimatedLottieViewProps {
   width?: number | string;
 }
 
-const LottieAnimation: React.FC<Props> = ({ width = 100, source }: Props) => {
-  return <LottieView source={source} style={{ width }} autoPlay />;
+const LottieAnimation: React.FC<Props> = ({
+  width = 100,
+  source,
+  style,
+}: Props) => {
+  return <LottieView source={source} style={[{ width }, style]} autoPlay />;
 };
 
 export default LottieAnimation;
