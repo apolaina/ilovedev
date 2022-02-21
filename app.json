@@ -17,7 +17,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns":[
+    "assetBundlePatterns": [
       "**/*",
       "assets/"
     ],
@@ -29,7 +29,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.apolaina.ilovedev"
     },
     "web": {
       "favicon": "./assets/favicon.png"
